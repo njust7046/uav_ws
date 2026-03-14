@@ -1,4 +1,0 @@
-<launch>
-    <rosparam file="$(find indoor_inspection)/config/waypoints.yaml" command="load" ns="indoor_inspection" />
-    <node name="inspection_node" pkg="indoor_inspection" type="inspection_node" output="screen" />
-</launch>

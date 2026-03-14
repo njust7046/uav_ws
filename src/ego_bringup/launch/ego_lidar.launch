@@ -1,0 +1,17 @@
+<launch>
+    <!-- 启动 PX4 -->
+    <include file="$(find robot_bringup)/launch/px4.launch" />
+
+    <!-- 发送 mavcmd 命令 -->
+    <node pkg="mavros" type="mavcmd" name="mavcmd_long_511_105" output="screen" args="long 511 105 5000 0 0 0 0 0" required="false" />
+    <node pkg="mavros" type="mavcmd" name="mavcmd_long_511_31" output="screen" args="long 511 31 5000 0 0 0 0 0" required="false" />
+
+    <!-- 启动 Livox 驱动 -->
+    <include file="$(find livox_ros_driver2)/launch/msg_MID360.launch" />
+
+    <!-- 启动 Fast LIO 映射 -->
+    <include file="$(find fast_lio)/launch/mapping_mid360.launch" />
+
+    <!-- 启动 lidar_to_mavros 节点 -->
+    <node pkg="lidar_to_mavros" type="lidar_to_mavros" name="lidar_to_mavros" output="screen" required="true" />
+</launch>

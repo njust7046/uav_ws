@@ -1,0 +1,4 @@
+<launch>
+    <rosparam file="$(find waypoint_flight)/config/waypoints.yaml" command="load" ns="waypoint_flight" />
+    <node name="waypoint_flight_node" pkg="waypoint_flight" type="waypoint_flight_node" output="screen" />
+</launch>
