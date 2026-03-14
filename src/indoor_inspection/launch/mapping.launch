@@ -1,0 +1,20 @@
+<launch>
+    <!-- 建图阶段：手动飞行建图，不启动巡检节点 -->
+    <!-- 用遥控器手动飞行覆盖整个区域，FAST_LIO 实时建图 -->
+    <!-- 建图完成后在 rviz 中查看点云地图，规划航点坐标 -->
+
+    <!-- MAVROS -->
+    <include file="$(find robot_bringup)/launch/px4.launch" />
+
+    <!-- MID360 激光雷达驱动 -->
+    <include file="$(find livox_ros_driver2)/launch/msg_MID360.launch" />
+
+    <!-- FAST_LIO 定位建图 -->
+    <include file="$(find fast_lio)/launch/mapping_mid360.launch" />
+
+    <!-- 位姿桥接到 MAVROS -->
+    <node name="lidar_to_mavros" pkg="lidar_to_mavros" type="lidar_to_mavros" output="screen" />
+
+    <!-- rviz 可视化（可选） -->
+    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find indoor_inspection)/config/mapping.rviz" /> -->
+</launch>
