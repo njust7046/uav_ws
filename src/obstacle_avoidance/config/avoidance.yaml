@@ -1,0 +1,41 @@
+# VFH+ 避障演示参数配置
+
+# --- 飞行参数 ---
+flight_height: 2.0          # 室外飞行高度(m)
+reach_threshold: 0.5        # 到达判定阈值(m)
+hover_time: 2.0             # 到达目标后悬停时间(s)
+
+# --- 目标点（相对起飞点偏移） ---
+goal_x: 10.0                # 目标点前方距离(m)
+goal_y: 0.0                 # 目标点侧向距离(m)
+
+# --- VFH+ 参数 ---
+max_range: 6.0              # 障碍物检测最大距离(m)
+safety_radius: 1.0          # 紧急悬停距离(m)，障碍物距离小于此值时悬停
+slowdown_radius: 3.0        # 减速开始距离(m)，障碍物在此范围内线性减速
+num_sectors: 72             # 极坐标直方图扇区数（72 = 每扇区5°）
+obstacle_threshold: 3       # 扇区内点数超过此值视为阻塞
+enlarge_sectors: 2          # 阻塞扇区向两侧膨胀的扇区数（2 = 10°安全边界）
+slice_half_height: 0.5      # 点云水平切片半高度(m)
+
+# --- 多层切片 ---
+multi_layer: true           # 启用多层点云切片（低/中/高三层）
+layer_offset: 0.5           # 额外层与飞行高度的偏移(m)
+ground_clearance: 0.3       # 地面过滤余量(m)，低于起飞点+此值的点视为地面
+
+# --- 导航参数 ---
+step_distance: 1.5          # 每步前进距离(m)
+cruise_speed: 1.0           # 巡航速度参考(m/s)，用于 setpoint 步进
+direction_alpha: 0.3        # 方向输出低通滤波系数（0~1，越小越平滑）
+
+# --- 脱困参数 ---
+stuck_timeout: 3.0          # 阻塞/紧急悬停持续超过此时间(s)后触发后退脱困
+retreat_distance: 2.0       # 后退脱困距离(m)
+
+# --- 安全参数 ---
+cloud_timeout: 1.0          # 点云超时(s)，超过此时间未收到新点云则视为无效
+
+# --- VFH+ 代价函数权重 ---
+w_target: 5.0               # 目标方向偏差权重
+w_smooth: 2.0               # 航向平滑权重（与当前航向的偏差）
+w_prev: 2.0                 # 上一帧方向连续性权重

@@ -1,0 +1,6 @@
+<launch>
+    <rosparam file="$(find circle_crossing)/config/circle_crossing.yaml"
+              command="load" ns="circle_crossing" />
+    <node name="circle_crossing_node" pkg="circle_crossing"
+          type="circle_crossing_node" output="screen" />
+</launch>

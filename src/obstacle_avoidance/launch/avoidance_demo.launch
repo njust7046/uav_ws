@@ -1,0 +1,4 @@
+<launch>
+    <rosparam file="$(find obstacle_avoidance)/config/avoidance.yaml" command="load" ns="obstacle_avoidance" />
+    <node name="avoidance_node" pkg="obstacle_avoidance" type="avoidance_node" output="screen" />
+</launch>
